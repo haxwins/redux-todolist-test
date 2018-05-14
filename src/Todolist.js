@@ -5,7 +5,6 @@ import { toggleTodo } from './actions/Todolistactions';
 
 class Todolist extends Component {
     onClickEvent = (key) =>{
-        console.log(key)
         this.props.toggleTodo(key);
     }
     renderList = () =>{
