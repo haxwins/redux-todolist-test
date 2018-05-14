@@ -1,5 +1,5 @@
 const initialState = {
-    list: [{name: 'do something', isDone: false},{name: 'asdasd', isDone: true}],
+    list: [{id: 0, name: 'do something', isDone: false},{id:1, name: 'asdasd', isDone: true}],
 }
 
 export default function Todolistreducer(state = initialState, action){
@@ -8,6 +8,14 @@ export default function Todolistreducer(state = initialState, action){
             return{
                 ...state,
                 list: [...state.list,{name: action.payload.newTodo, isDone: false}]
+            }
+        }
+        case 'TOGGLE_TODO':{
+            let tempList = state.list;
+            tempList[action.payload.id].isDone = !tempList[action.payload.id].isDone;
+            return{
+                ...state,
+                list: tempList,
             }
         }
         default:{

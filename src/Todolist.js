@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { toggleTodo } from './actions/Todolistactions';
+
 
 class Todolist extends Component {
-    onClickEvent = (e) =>{
-        console.log(e.target)
+    onClickEvent = (key) =>{
+        console.log(key)
+        this.props.toggleTodo(key);
     }
     renderList = () =>{
-        return this.props.todolist.list.map((element,index)=>{
-            return <li key={index} onClick={this.onClickEvent}>{element.name}</li>
+        return this.props.todolist.list.map((element)=>{
+            let temp='notdone';
+            if(element.isDone){temp='done'}
+            return <li key={element.id} className={temp} onClick={()=>{this.onClickEvent(element.id)}}>{element.name}</li>
         })
     }
     render(){
@@ -24,5 +29,9 @@ const mapStateToProps = state =>{
         todolist: state.todolist
     }
 }
-
-export default connect(mapStateToProps)(Todolist);
+const mapDispatchToProps = dispatch =>{
+    return{
+        toggleTodo: (key)=>{dispatch(toggleTodo(key))}
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Todolist);

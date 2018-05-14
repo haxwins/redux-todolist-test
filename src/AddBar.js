@@ -23,7 +23,7 @@ class AddBar extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
         addTodo: (name)=>dispatch(addTodo(name))
     }

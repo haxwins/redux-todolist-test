@@ -5,3 +5,11 @@ export function addTodo(name){
         }})
     }
 } 
+
+export function toggleTodo(key){
+    return dispatch => {
+        dispatch({type: 'TOGGLE_TODO', payload:{
+            id: key
+        }})
+    }
+}
